@@ -15,6 +15,17 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
+<<<<<<< HEAD
+=======
+app.use(express.static(path.join(__dirname, "build")));
+
+// Handle React routing, return index.html for unknown routes
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+
+>>>>>>> bd82554 (Initialized Git and integrated frontend with backend)
 app.use(express.json());
 
 const authenticateToken = (req, res, next) => {
