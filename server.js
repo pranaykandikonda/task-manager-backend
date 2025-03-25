@@ -15,17 +15,24 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Serve the static files from the React app
-app.use(express.static(path.join(__dirname, "build")));
+// // Serve the static files from the React app
+// app.use(express.static(path.join(__dirname, "build")));
 
-// Handle React routing, return index.html for unknown routes
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
+// // Handle React routing, return index.html for unknown routes
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 // (Initialized Git and integrated frontend with backend)
 app.use(express.json());
+
+// Error handling for JSON parsing
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    return res.status(400).json({ error: 'Invalid JSON' });
+  }
+  next();
+});
 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
