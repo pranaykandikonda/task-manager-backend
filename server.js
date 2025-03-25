@@ -10,13 +10,12 @@ const dbPath = path.join(__dirname, 'tasks.db');
 const SECRET_KEY = 'pranay';
 const db = new sqlite3.Database(dbPath);
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'comforting-platypus-69936a.netlify.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-<<<<<<< HEAD
-=======
+// Serve the static files from the React app
 app.use(express.static(path.join(__dirname, "build")));
 
 // Handle React routing, return index.html for unknown routes
@@ -25,7 +24,7 @@ app.get("*", (req, res) => {
 });
 
 
->>>>>>> bd82554 (Initialized Git and integrated frontend with backend)
+// (Initialized Git and integrated frontend with backend)
 app.use(express.json());
 
 const authenticateToken = (req, res, next) => {
