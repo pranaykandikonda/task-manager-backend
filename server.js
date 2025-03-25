@@ -309,6 +309,10 @@ app.get('/api/test', (req, res) => {
   res.json({ message: "Server is working!", timestamp: new Date() });
 });
 
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
+});
+
 //For testing purpose
 app.get('/api/users', (req, res) => {
   db.all("SELECT id, email FROM users", (err, rows) => {
